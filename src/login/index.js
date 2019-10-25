@@ -60,12 +60,13 @@ const mapDispatch=(dispatch)=>{
      for(let i=0;i<convertList.length;i++){
        if((convertList[i].username===username)&&(convertList[i].password===password)){
         console.log('Login Success');
+        window.location.href='/weather';
        }
        else
         count++;
      }
      if(count===convertList.length){
-       console.log("login fail");
+       alert("Please change your username or password");
      }
      
     }
