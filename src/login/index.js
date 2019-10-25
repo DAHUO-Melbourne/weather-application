@@ -14,8 +14,8 @@ class Login extends Component {
               Login
             </LoginHeader>
             <LoginForm>
-              <LoginInput placeholder='Email'/>
-              <LoginInput placeholder='Password'/>
+              <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
+              <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
               <LoginButton>Login</LoginButton>
             </LoginForm>
             <SignupLink>
@@ -33,13 +33,31 @@ class Login extends Component {
   }
 }
 
-// const mapState=(state)=>({
+const mapState=(state)=>({
+  username:state.getIn(['Login', 'username']),
+  password:state.getIn(['Login', 'password'])
+})
 
-// })
+const mapDispatch=(dispatch)=>{
+  return {
+    changeUsername(e){
+      const action={
+        type:'CHANGE_LOGIN_USERNAME',
+        value:e.target.value
+      }
+      dispatch(action);
+    },
 
-// const mapDispatch=(dispatch)=>({
+    changePassword(e){
+      const action ={
+        type:'CHANGE_LOGIN_PASSWORD',
+        value:e.target.value
+      }
+      dispatch(action);
+    }
+  }
 
-// })
+}
 
 
-export default Login;
+export default connect(mapState, mapDispatch)(Login);

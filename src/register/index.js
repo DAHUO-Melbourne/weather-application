@@ -5,6 +5,7 @@ import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginFor
 
 class Register extends Component {
   render(){
+    const {username, password}=this.props
     return (
       <div className="App">
         <div>
@@ -13,10 +14,10 @@ class Register extends Component {
             <LoginHeader>
               Signup
             </LoginHeader>
-            <LoginForm>
-              <LoginInput placeholder='Email'/>
-              <LoginInput placeholder='Password'/>
-              <LoginButton>Login</LoginButton>
+            <LoginForm >
+              <LoginInput placeholder='Email' onChange={this.props.changeUsername} value={username}/>
+              <LoginInput placeholder='Password' type='password' onChange={this.props.changePassword} value={password}/>
+              <LoginButton onClick={this.props.submitUserInfo(username, password)}>Register</LoginButton>
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>
@@ -33,13 +34,39 @@ class Register extends Component {
   }
 }
 
-// const mapState=(state)=>({
+const mapState=(state)=>({
+  username:state.getIn(['Register', 'username']),
+  password:state.getIn(['Register', 'password']),
+})
 
-// })
+const mapDispatch=(dispatch)=>{
+  return {
+    changeUsername(e){
+      const action={
+        type:'CHANGE_REGISTER_USERNAME',
+        value:e.target.value
+      }
+      dispatch(action);
+    },
 
-// const mapDispatch=(dispatch)=>({
+    changePassword(e){
+      const action ={
+        type:'CHANGE_REGISTER_PASSWORD',
+        value:e.target.value
+      }
+      dispatch(action);
+    },
 
-// })
+    submitUserInfo(username, password){
+      const action={
+        type:'ADD_USER_INFO_LIST',
+        username:username,
+        password:password
+      }
+      dispatch(action);
+    }
+  }
+}
 
 
-export default Register;
+export default connect(mapState, mapDispatch)(Register);
