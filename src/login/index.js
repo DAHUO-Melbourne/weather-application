@@ -5,7 +5,7 @@ import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginFor
 
 class Login extends Component {
   render(){
-    const {username, password}=this.props;
+    const {username, password, list}=this.props;
     return (
         <LoginWrapper>
           <LoginLeftWrapper>
@@ -15,7 +15,7 @@ class Login extends Component {
             <LoginForm>
               <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
               <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
-              <LoginButton onClick={this.props.loginClick.bind(this, username, password)}>Login</LoginButton>
+              <LoginButton onClick={this.props.loginClick.bind(this, username, password, list)}>Login</LoginButton>
             </LoginForm>
             
             <SignupLink>
@@ -33,7 +33,8 @@ class Login extends Component {
 
 const mapState=(state)=>({
   username:state.getIn(['Login', 'username']),
-  password:state.getIn(['Login', 'password'])
+  password:state.getIn(['Login', 'password']),
+  list:state.getIn(['Register', 'userInfoList']),
 })
 
 const mapDispatch=(dispatch)=>{
@@ -53,7 +54,19 @@ const mapDispatch=(dispatch)=>{
       }
       dispatch(action);
     },
-    loginClick(username, password){
+    loginClick(username, password, list){
+      const convertList=list.toJS();
+      let count=0;
+     for(let i=0;i<convertList.length;i++){
+       if((convertList[i].username===username)&&(convertList[i].password===password)){
+        console.log('Login Success');
+       }
+       else
+        count++;
+     }
+     if(count===convertList.length){
+       console.log("login fail");
+     }
      
     }
   }
