@@ -5,9 +5,8 @@ import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginFor
 
 class Login extends Component {
   render(){
+    const {username, password}=this.props;
     return (
-      <div className="App">
-        <div>
         <LoginWrapper>
           <LoginLeftWrapper>
             <LoginHeader>
@@ -16,8 +15,9 @@ class Login extends Component {
             <LoginForm>
               <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
               <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
-              <LoginButton>Login</LoginButton>
+              <LoginButton onClick={this.props.loginClick.bind(this, username, password)}>Login</LoginButton>
             </LoginForm>
+            
             <SignupLink>
               <SignupTitle>Don't have an account?</SignupTitle>
               <SignupClick><Link to={'/register'}>SIGN UP</Link></SignupClick>
@@ -27,8 +27,6 @@ class Login extends Component {
             <LoginRightTitle>Welcome Back!</LoginRightTitle>
           </LoginRightWrapper>
         </LoginWrapper>
-        </div>
-      </div>
     );
   }
 }
@@ -54,6 +52,9 @@ const mapDispatch=(dispatch)=>{
         value:e.target.value
       }
       dispatch(action);
+    },
+    loginClick(username, password){
+     
     }
   }
 
@@ -61,3 +62,4 @@ const mapDispatch=(dispatch)=>{
 
 
 export default connect(mapState, mapDispatch)(Login);
+//export default Login;

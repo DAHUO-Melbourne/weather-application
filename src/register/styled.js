@@ -68,7 +68,7 @@ export const LoginInput = styled.input`
     width: 80%;
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.div`
     padding: 1rem;
     border-radius: 2rem;
     outline: 0;
@@ -80,6 +80,7 @@ export const LoginButton = styled.button`
     width: 50%;
     box-shadow: 0 0 2rem rgba(0,0,255,.1);
     background: #d3d3d3;
+    text-align: center;
 `;
 
 export const SignupLink = styled.div`

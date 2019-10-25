@@ -4,7 +4,7 @@ import * as constants from 'constants'
 const defaultState=fromJS({
     username:'',
     password:'',
-    userInfoList:List([]),
+    userInfoList:List(),
 }) 
 
 export default (state=defaultState, action)=>{
@@ -18,11 +18,8 @@ export default (state=defaultState, action)=>{
                     username:action.username,
                     password:action.password
                 }
-                console.log(action.username);
-                console.log(action.password);
-               const NewList=state.get('userInfoList');
-               NewList.push(userItem);
-                return state.set('userInfoList', NewList);
+                const NewList=state.get('userInfoList');
+                return state.set('userInfoList', NewList.push(userItem));
                 
         default:
             return state;

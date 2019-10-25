@@ -1,4 +1,5 @@
-import React, {Component, Fragment} from 'react';
+import React, { Fragment } from 'react';
+import {GlobalStyle} from './style'
 import Login from './login/index';
 import Register from './register/index';
 import {BrowserRouter, Route} from 'react-router-dom';
@@ -6,28 +7,20 @@ import { Provider }  from 'react-redux';
 import store from './store'
 
 
-class App extends Component {
-  render(){
+function App(){
     return (
         <Fragment>
           <Provider store={store}>
-          <BrowserRouter>
-            <Route path='/login' exact component={Login}></Route>
-            <Route path='/register' exact component={Register}></Route>
-            </BrowserRouter>
+          <BrowserRouter> 
+            <div>
+             <Route path='/login' exact component={Login}></Route>
+              <Route path='/register' exact component={Register}></Route>
+              </div>
+          </BrowserRouter>
             </Provider>
+            <GlobalStyle/>
         </Fragment>
     );
-  }
 }
-
-// const mapState=(state)=>({
-
-// })
-
-// const mapDispatch=(dispatch)=>({
-
-// })
-
 
 export default App;

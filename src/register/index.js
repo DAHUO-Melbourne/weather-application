@@ -5,9 +5,8 @@ import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginFor
 
 class Register extends Component {
   render(){
-    const {username, password}=this.props
+    const {username, password}=this.props;
     return (
-      <div className="App">
         <div>
         <LoginWrapper>
           <LoginLeftWrapper>
@@ -17,7 +16,7 @@ class Register extends Component {
             <LoginForm >
               <LoginInput placeholder='Email' onChange={this.props.changeUsername} value={username}/>
               <LoginInput placeholder='Password' type='password' onChange={this.props.changePassword} value={password}/>
-              <LoginButton onClick={this.props.submitUserInfo(username, password)}>Register</LoginButton>
+              <LoginButton onClick={this.props.submitUserInfo.bind(this, username, password)}>Register</LoginButton>
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>
@@ -29,7 +28,6 @@ class Register extends Component {
           </LoginRightWrapper>
         </LoginWrapper>
         </div>
-      </div>
     );
   }
 }
@@ -58,12 +56,15 @@ const mapDispatch=(dispatch)=>{
     },
 
     submitUserInfo(username, password){
+
       const action={
         type:'ADD_USER_INFO_LIST',
         username:username,
         password:password
-      }
+      };
       dispatch(action);
+    
+//   alert('LLL')
     }
   }
 }
