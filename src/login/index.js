@@ -8,6 +8,7 @@ class Login extends Component {
     const {username, password, list}=this.props;
     return (
         <LoginWrapper>
+          <style>{'body { background-image: linear-gradient(to top,#5ee7df 0,#66a6ff 100%); }'}</style>
           <LoginLeftWrapper>
             <LoginHeader>
               Login

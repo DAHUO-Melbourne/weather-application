@@ -55,7 +55,7 @@ class Weather extends Component {
                             </svg>
                         </LogoWrapper>
                         <WeatherTempretureWrapper>
-                            <WeatherTempreture>{tempreture}</WeatherTempreture>
+                            <WeatherTempreture>{tempreture}°</WeatherTempreture>
                             <WeatherLocation>{city}</WeatherLocation>
                             <WeatherMain>{weather}</WeatherMain>
                         </WeatherTempretureWrapper>
@@ -87,7 +87,7 @@ const mapDispatch=(dispatch)=>{
             const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=eeafa45a1d53ce4cf30b841805c81737&q=${city}`);
             const myJson= await response.json();
             const weather = myJson.weather[0].main;
-            const tempreture=myJson.main.temp;
+            const tempreture=Math.ceil(myJson.main.temp-273.15);
 //            console.log(weather);
             const action={
                 type:'WEATHER_DATA_CHANGE',

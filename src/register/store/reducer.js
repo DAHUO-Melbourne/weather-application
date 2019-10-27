@@ -19,7 +19,11 @@ export default (state=defaultState, action)=>{
                     password:action.password
                 }
                 const NewList=state.get('userInfoList');
-                return state.set('userInfoList', NewList.push(userItem));
+                return state.merge({
+                    'userInfoList': NewList.push(userItem),
+                    'username':'',
+                    'password':'',
+                });
                 
         default:
             return state;

@@ -105,9 +105,9 @@ export const WeatherRightHeadingWrapper=styled.div`
 `;
 
 export const WeatherRightHeading=styled.h3`
-margin-bottom: .5rem;
-margin-top: 1rem;
-font-size: 1.85rem;
+    margin-bottom: .5rem;
+    margin-top: 1rem;
+    font-size: 1.85rem;
     letter-spacing: .1rem;
     word-break: break-all;
     display: block;
@@ -163,6 +163,8 @@ export const WeatherRightContentWrapper = styled.div`
 
 export const WeatherTempretureWrapper = styled.div`
     color: #fff;
+    width: 100%;
+    text-align: center;
 `;
 
 export const WeatherTempreture = styled.span`

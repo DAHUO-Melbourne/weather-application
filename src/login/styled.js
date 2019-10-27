@@ -26,6 +26,8 @@ export const LoginLeftWrapper = styled.div`
     min-height: 100%;
     padding-top: 100px;
     padding-bottom: 100px;
+    background: #fff;
+    border-radius: 10px 0 0 10px;
 `;
 
 export const LoginRightWrapper = styled.div`
