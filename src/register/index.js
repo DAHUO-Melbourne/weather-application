@@ -33,7 +33,7 @@ class Register extends Component {
                   <option>Admin</option>
                 </Form.Control>
               </Form.Group>
-              <LoginButton onClick={this.props.submitUserInfo.bind(this, username, sha256(password), permission)}>Register</LoginButton>
+              <LoginButton onClick={this.props.submitUserInfo.bind(this, username, password, permission)}>Register</LoginButton>
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>
@@ -75,9 +75,10 @@ const mapDispatch=(dispatch)=>{
     },
 
     submitUserInfo(username, password, permission){
+      if (/[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password) && password.length>7) {
       const userInfo={
         username:username,
-        password:password,
+        password:sha256(password),
         permission:permission
       }
 
@@ -93,6 +94,10 @@ const mapDispatch=(dispatch)=>{
         else
           alert('Already registered')
         })
+      }
+      else
+        alert('password must contain at least one uppercase letter, one lowercase letter and one figure, the length must be at least 8 digits')
+
 
       const action={
         type:'ADD_USER_INFO_LIST',
