@@ -187,3 +187,17 @@ export const WeatherMain = styled.div`
     text-align: center;
     font-size: 1rem;
 `;
+
+export const DataSubmissionButton = styled.button`
+    width:7rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    background: white;
+    color: #000;
+    box-shadow: 0 0 2rem rgba(0,0,255,.3);
+    outline: 0;
+    border: none;
+`

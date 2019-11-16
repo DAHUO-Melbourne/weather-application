@@ -11,6 +11,7 @@ import {WeatherTempretureWrapper,
         WeatherLeftHeading, 
         WeatherSearchInput, 
         WeatherSearchButton, 
+        DataSubmissionButton,
         WeatherInputWrapper, 
         WeatherRightHeadingWrapper, 
         WeatherRightHeading, 
@@ -18,10 +19,11 @@ import {WeatherTempretureWrapper,
         WeatherTempreture,
         WeatherLocation,
         WeatherMain} from './styled';
+import axios from 'axios';
 
 class Weather extends Component {
     render(){
-        const {city, weather, tempreture} = this.props;
+        const {city, weather, tempreture, permission} = this.props;
         return (
             <WeatherWrapper>
                 <WeatherLeftWrapper>
@@ -29,7 +31,9 @@ class Weather extends Component {
                     <WeatherInputWrapper>
                     <WeatherSearchInput value={this.props.city} onChange={this.props.handleInputChange}></WeatherSearchInput>
                     <WeatherSearchButton onClick={this.props.getWeatherData.bind(this, city)}></WeatherSearchButton>
+                    <DataSubmissionButton onClick={this.props.submitWeatherData.bind(this,city, weather, tempreture, permission)}>Submit the data</DataSubmissionButton>
                     </WeatherInputWrapper>
+
                 </WeatherLeftWrapper>
                 <WeatherRightWrapper>
                     <WeatherRightCover>
@@ -66,6 +70,7 @@ const mapState=(state)=>({
     city:state.getIn(['Weather', 'city']),
     weather:state.getIn(['Weather', 'weather']),
     tempreture:state.getIn(['Weather', 'tempreture']),
+    permission:state.getIn(['Login','permission'])
 });
 
 const mapDispatch=(dispatch)=>{
@@ -90,6 +95,19 @@ const mapDispatch=(dispatch)=>{
             }
             dispatch(action);
         },
+
+        submitWeatherData(city, weather, tempreture, permission){
+            if(permission==='Admin'){
+                axios.post('http://localhost:5000/weatherdata/add',{
+                    city:city,
+                    weather:weather,
+                    tempreture:tempreture
+                })
+                .then(res=>console.log(res.data))
+            }
+            else
+                alert('You do not have permission');
+        }
     }
 }
 

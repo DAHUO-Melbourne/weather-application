@@ -12,13 +12,13 @@ router.route('/add').post((req,res)=>{
     const password=req.body.password;
     const permission=req.body.permission;
 
-    const newPayslip=new userInfo({
+    const neUserInfo=new userInfo({
         username,
         password,
         permission,
     })
 
-    newPayslip.save()
+    neUserInfo.save()
     .then(()=>res.json('userInfo added!'))
     .catch(err=>res.status(400).json('Error '+err));
 });

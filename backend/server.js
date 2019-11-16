@@ -3,6 +3,7 @@ const cors=require('cors');
 const mongoose=require('mongoose');
 
 const userInfoRouter=require('./routes/userInfo');
+const weatherDataRouter=require('./routes/weatherData');
 
 require('dotenv').config();
 
@@ -21,6 +22,7 @@ connection.once('open',()=>{
 });
 
 app.use('/userinfo', userInfoRouter);
+app.use('/weatherdata', weatherDataRouter);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port: ${port}`);
