@@ -76,24 +76,24 @@ const mapDispatch=(dispatch)=>{
 
     submitUserInfo(username, password, permission){
       if (/[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password) && password.length>7) {
-      const userInfo={
-        username:username,
-        password:sha256(password),
-        permission:permission
-      }
-
-      axios.post('http://localhost:5000/userinfo/findusername',{
-        username:username,
-      })
-      .then(res=>{
-        console.log(res.data);
-        if(res.data.length===0){
-          axios.post('http://localhost:5000/userinfo/add',userInfo)
-          .then(res=>console.log(res.data));
+        const userInfo={
+          username:username,
+          password:sha256(password),
+          permission:permission
         }
-        else
-          alert('Already registered')
+
+        axios.post('http://localhost:5000/userinfo/findusername',{
+          username:username,
         })
+        .then(res=>{
+          console.log(res.data);
+          if(res.data.length===0){
+            axios.post('http://localhost:5000/userinfo/add',userInfo)
+            .then(res=>console.log(res.data));
+          }
+          else
+            alert('Already registered')
+          })
       }
       else
         alert('password must contain at least one uppercase letter, one lowercase letter and one figure, the length must be at least 8 digits')
