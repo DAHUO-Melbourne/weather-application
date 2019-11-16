@@ -32,4 +32,12 @@ router.route('/find').post((req, res)=>{
         .catch(err=>res.status(400).json('Error '+err));
     });
 
+    router.route('/findusername').post((req, res)=>{
+        userInfo.find({
+            username:req.body.username
+            })
+            .then(userinfo=>res.json(userinfo))
+            .catch(err=>res.status(400).json('Error '+err));
+        });
+
 module.exports=router;

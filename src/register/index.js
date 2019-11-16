@@ -79,8 +79,18 @@ const mapDispatch=(dispatch)=>{
         permission:permission
       }
 
-      axios.post('http://localhost:5000/userinfo/add',userInfo)
-        .then(res=>console.log(res.data));
+      axios.post('http://localhost:5000/userinfo/findusername',{
+        username:username,
+      })
+      .then(res=>{
+        console.log(res.data);
+        if(res.data.length===0){
+          axios.post('http://localhost:5000/userinfo/add',userInfo)
+          .then(res=>console.log(res.data));
+        }
+        else
+          alert('Already registered')
+        })
 
       const action={
         type:'ADD_USER_INFO_LIST',
