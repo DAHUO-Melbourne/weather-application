@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import { connect }  from 'react-redux';
 import {Link} from 'react-router-dom'
 import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginForm, LoginInput, LoginButton, SignupLink, SignupClick, SignupTitle, LoginRightTitle} from './styled';
+import axios from 'axios';
 
 class Login extends Component {
   render(){
-    const {username, password, list}=this.props;
+    const {username, password}=this.props;
     return (
         <LoginWrapper>
           <style>{'body { background-image: linear-gradient(to top,#5ee7df 0,#66a6ff 100%); }'}</style>
@@ -16,7 +17,7 @@ class Login extends Component {
             <LoginForm>
               <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
               <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
-              <LoginButton onClick={this.props.loginClick.bind(this, username, password, list)}>Login</LoginButton>
+              <LoginButton onClick={this.props.loginClick.bind(this, username, password)}>Login</LoginButton>
             </LoginForm>
             
             <SignupLink>
@@ -55,20 +56,35 @@ const mapDispatch=(dispatch)=>{
       }
       dispatch(action);
     },
-    loginClick(username, password, list){
+    loginClick(username, password){
+
+      axios.post('http://localhost:5000/userinfo/find',{
+        username:username,
+        password:password,
+  }).then(res=>{
+    console.log(res.data);
+    if(res.data.length===0){
+        alert('Please change your password')
+    }
+    else
+        window.location.href='/weather';
+  });
+
+      /*
       const convertList=list.toJS();
       let count=0;
-     for(let i=0;i<convertList.length;i++){
-       if((convertList[i].username===username)&&(convertList[i].password===password)){
-        console.log('Login Success');
-        window.location.href='/weather';
-       }
+      for(let i=0;i<convertList.length;i++){
+         if((convertList[i].username===username)&&(convertList[i].password===password)){
+          console.log('Login Success');
+          window.location.href='/weather';
+        }
        else
         count++;
      }
      if(count===convertList.length){
        alert("Please change your username or password");
      }
+     */
      
     }
   }

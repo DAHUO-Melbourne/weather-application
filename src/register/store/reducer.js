@@ -4,6 +4,7 @@ import * as constants from 'constants'
 const defaultState=fromJS({
     username:'',
     password:'',
+    permission:'Normal User',
     userInfoList:List(),
 }) 
 
@@ -13,6 +14,8 @@ export default (state=defaultState, action)=>{
                 return state.set('username',action.value);
         case 'CHANGE_REGISTER_PASSWORD':
                 return state.set('password',action.value);
+        case 'CHANGE_USER_PERMISSION':
+                return state.set('permission',action.value);
         case 'ADD_USER_INFO_LIST':
                 const userItem={
                     username:action.username,
