@@ -3,6 +3,7 @@ import { connect }  from 'react-redux';
 import {Link} from 'react-router-dom'
 import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginForm, LoginInput, LoginButton, SignupLink, SignupClick, SignupTitle, LoginRightTitle} from './styled';
 import axios from 'axios';
+import sha256 from 'sha256';
 
 class Login extends Component {
   render(){
@@ -17,7 +18,7 @@ class Login extends Component {
             <LoginForm>
               <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
               <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
-              <LoginButton onClick={this.props.loginClick.bind(this, username, password)}>Login</LoginButton>
+              <LoginButton onClick={this.props.loginClick.bind(this, username, sha256(password))}>Login</LoginButton>
             </LoginForm>
             
             <SignupLink>

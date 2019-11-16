@@ -5,6 +5,7 @@ import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginFor
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Col } from 'react-bootstrap';
 import axios from 'axios';
+import sha256 from 'sha256';
 
 class Register extends Component {
   render(){
@@ -32,7 +33,7 @@ class Register extends Component {
                   <option>Admin</option>
                 </Form.Control>
               </Form.Group>
-              <LoginButton onClick={this.props.submitUserInfo.bind(this, username, password, permission)}>Register</LoginButton>
+              <LoginButton onClick={this.props.submitUserInfo.bind(this, username, sha256(password), permission)}>Register</LoginButton>
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>
@@ -69,6 +70,7 @@ const mapDispatch=(dispatch)=>{
         type:'CHANGE_REGISTER_PASSWORD',
         value:e.target.value
       }
+//      console.log(sha256(e.target.value))
       dispatch(action);
     },
 
