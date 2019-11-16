@@ -70,7 +70,6 @@ const mapDispatch=(dispatch)=>{
         type:'CHANGE_REGISTER_PASSWORD',
         value:e.target.value
       }
-//      console.log(sha256(e.target.value))
       dispatch(action);
     },
 
@@ -98,7 +97,6 @@ const mapDispatch=(dispatch)=>{
       else
         alert('password must contain at least one uppercase letter, one lowercase letter and one figure, the length must be at least 8 digits')
 
-
       const action={
         type:'ADD_USER_INFO_LIST',
         username:username,
@@ -117,6 +115,5 @@ const mapDispatch=(dispatch)=>{
     }
   }
 }
-
 
 export default connect(mapState, mapDispatch)(Register);

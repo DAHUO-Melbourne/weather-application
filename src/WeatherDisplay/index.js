@@ -20,13 +20,8 @@ import {WeatherTempretureWrapper,
         WeatherMain} from './styled';
 
 class Weather extends Component {
-
-
-
     render(){
         const {city, weather, tempreture} = this.props;
-//        console.log(this.props.getWeatherData(city));
-
         return (
             <WeatherWrapper>
                 <WeatherLeftWrapper>
@@ -88,7 +83,6 @@ const mapDispatch=(dispatch)=>{
             const myJson= await response.json();
             const weather = myJson.weather[0].main;
             const tempreture=Math.ceil(myJson.main.temp-273.15);
-//            console.log(weather);
             const action={
                 type:'WEATHER_DATA_CHANGE',
                 weather: weather,
@@ -96,13 +90,7 @@ const mapDispatch=(dispatch)=>{
             }
             dispatch(action);
         },
-
-        // getDate(){
-        //     var myDate=new Date();
-            
-        // }
     }
-
 }
 
 export default connect(mapState, mapDispatch)(Weather);

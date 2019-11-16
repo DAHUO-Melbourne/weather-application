@@ -6,6 +6,7 @@ import axios from 'axios';
 import sha256 from 'sha256';
 
 class Login extends Component {
+
   render(){
     const {username, password}=this.props;
     return (
@@ -57,41 +58,28 @@ const mapDispatch=(dispatch)=>{
       }
       dispatch(action);
     },
-    loginClick(username, password){
 
+    loginClick(username, password){
       axios.post('http://localhost:5000/userinfo/find',{
         username:username,
         password:password,
-  }).then(res=>{
-    console.log(res.data);
-    if(res.data.length===0){
-        alert('Please change your password')
-    }
-    else
-        window.location.href='/weather';
-  });
-
-      /*
-      const convertList=list.toJS();
-      let count=0;
-      for(let i=0;i<convertList.length;i++){
-         if((convertList[i].username===username)&&(convertList[i].password===password)){
-          console.log('Login Success');
-          window.location.href='/weather';
+      }).then(res=>{
+        console.log(res.data);
+        if(res.data.length===0){
+            alert('Please change your password')
         }
-       else
-        count++;
-     }
-     if(count===convertList.length){
-       alert("Please change your username or password");
-     }
-     */
-     
+        else {
+            const action={
+              type:'LOG_USER_PERMISSION',
+              value: res.data[0].permission
+            }
+            dispatch(action);
+            this.props.history.push('/weather');
+            return true;
+          }
+        });   
     }
   }
-
 }
 
-
 export default connect(mapState, mapDispatch)(Login);
-//export default Login;
