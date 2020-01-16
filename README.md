@@ -18,8 +18,12 @@ so the functions in this open-source area is not the full function, but a part o
 ### Page appearance
 
 #### Registration function
+![image](https://github.com/DAHUO-Melbourne/weather-app-with-backend/blob/master/GIF/GIFrg.gif)
 
 #### Login function
+![image](https://github.com/DAHUO-Melbourne/weather-app-with-backend/blob/master/GIF/GIFlg.gif)
 
 #### Enquiry function
-
+![image](https://github.com/DAHUO-Melbourne/weather-app-with-backend/blob/master/GIF/GIFeq.gif)
+If you want to submit the enquiry data into the mongodb system as a storage, you have to register as an admin role.
+If not, contact the mongoDB administrator to change your role.
