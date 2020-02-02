@@ -20,10 +20,11 @@ import {WeatherTempretureWrapper,
         WeatherLocation,
         WeatherMain} from './styled';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class Weather extends Component {
     render(){
-        const {city, weather, tempreture, permission} = this.props;
+        const {city, weather, tempreture, permission, username} = this.props;
         return (
             <WeatherWrapper>
                 <WeatherLeftWrapper>
@@ -31,7 +32,8 @@ class Weather extends Component {
                     <WeatherInputWrapper>
                     <WeatherSearchInput value={this.props.city} onChange={this.props.handleInputChange}></WeatherSearchInput>
                     <WeatherSearchButton onClick={this.props.getWeatherData.bind(this, city)}></WeatherSearchButton>
-                    <DataSubmissionButton onClick={this.props.submitWeatherData.bind(this,city, weather, tempreture, permission)}>Submit the data</DataSubmissionButton>
+                    <DataSubmissionButton onClick={this.props.submitWeatherData.bind(this,city, weather, tempreture, permission, username)}>Submit the data</DataSubmissionButton>
+                    <DataSubmissionButton><Link to={'/favourite'}>Favourites check</Link></DataSubmissionButton>
                     </WeatherInputWrapper>
 
                 </WeatherLeftWrapper>
@@ -70,7 +72,8 @@ const mapState=(state)=>({
     city:state.getIn(['Weather', 'city']),
     weather:state.getIn(['Weather', 'weather']),
     tempreture:state.getIn(['Weather', 'tempreture']),
-    permission:state.getIn(['Login','permission'])
+    permission:state.getIn(['Login','permission']),
+    username: state.getIn(['Login', 'username']),
 });
 
 const mapDispatch=(dispatch)=>{
@@ -96,14 +99,17 @@ const mapDispatch=(dispatch)=>{
             dispatch(action);
         },
 
-        submitWeatherData(city, weather, tempreture, permission){
+        submitWeatherData(city, weather, tempreture, permission, username){
             if(permission==='Admin'){
                 axios.post('http://localhost:5000/weatherdata/add',{
                     city:city,
                     weather:weather,
-                    tempreture:tempreture
+                    tempreture:tempreture,
+                    username: username
                 })
-                .then(res=>console.log(res.data))
+                .then(res=>console.log(res.data));
+                console.log('NNN');
+                console.log(username);
             }
             else
                 alert('You do not have permission');
