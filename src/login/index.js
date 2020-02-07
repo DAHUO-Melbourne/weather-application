@@ -64,7 +64,7 @@ const mapDispatch=(dispatch)=>{
         username:username,
         password:password,
       }).then(res=>{
-        console.log(res.data);
+//        console.log(res.data);
         if(res.data.length===0){
             alert('Please change your password')
         }
