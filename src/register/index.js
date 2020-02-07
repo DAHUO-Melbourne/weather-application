@@ -37,7 +37,7 @@ class Register extends Component {
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>
-              <SignupClick><Link to={'/login'}>LOGIN</Link></SignupClick>
+              <SignupClick><Link to={'/'}>LOGIN</Link></SignupClick>
             </SignupLink>
           </LoginLeftWrapper>
           <LoginRightWrapper>

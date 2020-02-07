@@ -15,7 +15,7 @@ function App() {
         <Provider store={store}>
         <BrowserRouter> 
           <div>
-           <Route path='/login' exact component={Login}></Route>
+           <Route path='/' exact component={Login}></Route>
            <Route path='/register' exact component={Register}></Route>
            <Route path='/weather' exact component={Weather}></Route>
            <Route path='/favourite' exact component={Favourite}></Route>
