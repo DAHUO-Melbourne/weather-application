@@ -80,12 +80,10 @@ const mapDispatch=(dispatch)=>{
           password:sha256(password),
           permission:permission
         }
-
         axios.post('http://localhost:5000/userinfo/findusername',{
           username:username,
         })
         .then(res=>{
-          console.log(res.data);
           if(res.data.length===0){
             axios.post('http://localhost:5000/userinfo/add',userInfo)
             .then(res=>console.log(res.data));

@@ -11,5 +11,4 @@ const weatherDataSchema = new Schema({
 })
 
 const UserInfo = mongoose.model('weatherData', weatherDataSchema);
-
 module.exports = UserInfo;

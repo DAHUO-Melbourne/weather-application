@@ -43,7 +43,7 @@ class Favourite extends Component {
             <CardDeck>
                 {this.favourList()}
             </CardDeck>
-            <Button onClick={this.props.updateWeather.bind(this,favourites)}>Today's weather</Button>
+            <Button style={{display:'block', marginTop:'20px', marginLeft:'auto', marginRight:'auto'}} onClick={this.props.updateWeather.bind(this,favourites)}>Today's weather</Button>
             </Fragment>
         )
     }
@@ -86,6 +86,7 @@ const mapState=(state)=>({
                 favourites: this.props.favourites                
             })
             .then(response => {
+                console.log(response.data);
                 const action={
                     type: 'FAVOURITE_WEATHER_UPDATES',
                     data: response.data

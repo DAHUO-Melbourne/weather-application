@@ -24,8 +24,6 @@ router.route('/updates').post((req, res) => {
         const myJson = await response.json();
         element.weather = myJson.weather[0].main;
         element.tempreture = Math.ceil(myJson.main.temp - 273.15);
-        console.log(element.weather);
-        console.log(element.tempreture);
         counter++;
     });
     setInterval(() => {
@@ -47,7 +45,6 @@ router.route('/add').post((req, res) => {
     const city = req.body.city;
     const weather = req.body.weather;
     const username = req.body.username;
-
     const newWeatherData = new weatherData({
         username,
         tempreture,

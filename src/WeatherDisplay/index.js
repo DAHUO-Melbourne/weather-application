@@ -108,8 +108,6 @@ const mapDispatch=(dispatch)=>{
                     username: username
                 })
                 .then(res=>console.log(res.data));
-                console.log('NNN');
-                console.log(username);
             }
             else
                 alert('You do not have permission');

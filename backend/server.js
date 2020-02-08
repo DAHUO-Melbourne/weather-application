@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 
 const userInfoRouter = require('./routes/userInfo');
 const weatherDataRouter = require('./routes/weatherData');
-//const favouriteRouter = require('./routes/favourite');
 
 require('dotenv').config();
 
@@ -24,7 +23,6 @@ connection.once('open', () => {
 
 app.use('/userinfo', userInfoRouter);
 app.use('/weatherdata', weatherDataRouter);
-//app.use('/favourite', favouriteRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
