@@ -22,9 +22,19 @@ import {WeatherTempretureWrapper,
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
+const storage = window.sessionStorage;
+
 class Weather extends Component {
+    constructor(props){
+        super(props);
+        storage.localUsername = this.props.username;
+        storage.localPermission = this.props.permission;
+        //        alert(storage.localUsername);
+        //        alert(storage.localPermission);
+    }
     render(){
         const {city, weather, tempreture, permission, username} = this.props;
+        alert(storage.localUsername);
         return (
             <WeatherWrapper>
                 <WeatherLeftWrapper>
