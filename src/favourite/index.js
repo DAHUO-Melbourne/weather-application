@@ -11,7 +11,10 @@ const Favour = props => (
     <Card.Title>{props.favourites.city}</Card.Title>
     <Card.Text>{props.favourites.weather}</Card.Text>
     <Card.Text style={{display:'none'}}>{props.favourites._id}</Card.Text>
-    <Card.Text>{props.favourites.updatedAt}</Card.Text>
+    <Card.Text>{props.favourites.updatedAt.replace('-', '/')
+          .replace('-', '/')
+          .replace('T', '/')
+          .replace('Z','')}</Card.Text>
     </Card.Body>
     <Card.Footer>
     <small className="text-muted">{props.favourites.tempreture}</small>
@@ -35,6 +38,14 @@ class Favourite extends Component {
           return <Favour favourites={currentfavourites} deleteFavourite={this.props.deleteFavourite.bind(this)} key={currentfavourites._id}/>;
         })
       }
+
+    timeFormated(dateString) {
+        return dateString
+          .replace('-', '/')
+          .replace('-', '/')
+          .replace('T', '/')
+          .replace('Z','');
+    }
 
     render() {
         const {favourites } = this.props;

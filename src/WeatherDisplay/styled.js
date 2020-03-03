@@ -4,11 +4,14 @@ import StackUtils from 'stack-utils';
 export const WeatherWrapper = styled.div`
     width: 85%;
     border-radius: 10px;
-    position: relatice;
+    position: absolute;
     display: flex;
     box-shadow: 0 0 20px rgba(0,0,0,.1);
     margin: auto;
     height: 590px;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 `;
 export const WeatherLeftWrapper = styled.div`
     -webkit-box-flex: 2;

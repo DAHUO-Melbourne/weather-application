@@ -16,10 +16,10 @@ class Login extends Component {
             <LoginHeader>
               Login
             </LoginHeader>
-            <LoginForm>
+            <LoginForm onSubmit={this.props.loginClick.bind(this, username, sha256(password))}>
               <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
               <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
-              <LoginButton onClick={this.props.loginClick.bind(this, username, sha256(password))}>Login</LoginButton>
+              <LoginButton type="submit">Login</LoginButton>
             </LoginForm>
             
             <SignupLink>
@@ -59,7 +59,8 @@ const mapDispatch=(dispatch)=>{
       dispatch(action);
     },
 
-    loginClick(username, password){
+    loginClick(username, password, event){
+      event.preventDefault();
       axios.post('http://localhost:5000/userinfo/find',{
         username:username,
         password:password,

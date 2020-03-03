@@ -3,10 +3,13 @@ import styled from 'styled-components'
 export const LoginWrapper = styled.div`
     width: 85%;
     border-radius: 10px;
-    position: relatice;
+    position: absolute;
     display: flex;
     box-shadow: 0 0 20px rgba(0,0,0,.1);
     margin: auto;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 `;
 
 export const LoginLeftWrapper = styled.div`
@@ -70,7 +73,7 @@ export const LoginInput = styled.input`
     width: 80%;
 `;
 
-export const LoginButton = styled.div`
+export const LoginButton = styled.button`
     padding: 1rem;
     border-radius: 2rem;
     outline: 0;

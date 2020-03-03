@@ -17,7 +17,7 @@ class Register extends Component {
             <LoginHeader>
               Signup
             </LoginHeader>
-            <LoginForm >
+            <LoginForm onSubmit={this.props.submitUserInfo.bind(this, username, password, permission)} >
               <LoginInput placeholder='Email' onChange={this.props.changeUsername} value={username}/>
               <LoginInput placeholder='Password' type='password' onChange={this.props.changePassword} value={password}/>
               <Form.Group as={Col} controlId="formGridState">
@@ -33,7 +33,7 @@ class Register extends Component {
                   <option>Admin</option>
                 </Form.Control>
               </Form.Group>
-              <LoginButton onClick={this.props.submitUserInfo.bind(this, username, password, permission)}>Register</LoginButton>
+              <LoginButton type='submit'>Register</LoginButton>
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>
@@ -73,7 +73,8 @@ const mapDispatch=(dispatch)=>{
       dispatch(action);
     },
 
-    submitUserInfo(username, password, permission){
+    submitUserInfo(username, password, permission, event){
+      event.preventDefault();
       if (/[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password) && password.length>7) {
         const userInfo={
           username:username,
