@@ -88,6 +88,7 @@ const mapDispatch=(dispatch)=>{
           if(res.data.length===0){
             axios.post('http://localhost:5000/userinfo/add',userInfo)
             .then(res=>console.log(res.data));
+            this.props.history.push('/');
           }
           else
             alert('Already registered')
