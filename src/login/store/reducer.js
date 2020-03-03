@@ -20,6 +20,10 @@ export default (state=defaultState, action)=>{
         case 'LOG_USER_PERMISSION':
             sessionStorage.setItem('permission', action.value);
             return state.set('permission',action.value);
+        case 'LOG_OUT':
+            sessionStorage.setItem('username', action.value);
+            return state.merge({'username': action.value,
+                                'password':action.value});
         default:
             return state;
     }

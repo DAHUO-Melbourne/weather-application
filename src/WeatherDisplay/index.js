@@ -37,6 +37,7 @@ class Weather extends Component {
                     <WeatherSearchButton onClick={this.props.getWeatherData.bind(this, city)}></WeatherSearchButton>
                     <DataSubmissionButton onClick={this.props.submitWeatherData.bind(this,city, weather, tempreture, permission, username)}>Submit the data</DataSubmissionButton>
                     <Link to={'/favourite'}><DataSubmissionButton>Favourites check</DataSubmissionButton></Link>
+                    <div><Link to={'/'}><DataSubmissionButton onClick={this.props.logout}>log out</DataSubmissionButton></Link></div>
                     </WeatherInputWrapper>
 
                 </WeatherLeftWrapper>
@@ -114,6 +115,14 @@ const mapDispatch=(dispatch)=>{
             }
             else
                 alert('You do not have permission');
+        },
+
+        logout(){
+            const action = {
+                type:'LOG_OUT',
+                value:''
+            }
+            dispatch(action);
         }
     }
 }
