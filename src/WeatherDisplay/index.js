@@ -36,7 +36,7 @@ class Weather extends Component {
                     <WeatherSearchInput value={this.props.city} onChange={this.props.handleInputChange}></WeatherSearchInput>
                     <WeatherSearchButton onClick={this.props.getWeatherData.bind(this, city)}></WeatherSearchButton>
                     <DataSubmissionButton onClick={this.props.submitWeatherData.bind(this,city, weather, tempreture, permission, username)}>Submit the data</DataSubmissionButton>
-                    <DataSubmissionButton><Link to={'/favourite'}>Favourites check</Link></DataSubmissionButton>
+                    <Link to={'/favourite'}><DataSubmissionButton>Favourites check</DataSubmissionButton></Link>
                     </WeatherInputWrapper>
 
                 </WeatherLeftWrapper>
