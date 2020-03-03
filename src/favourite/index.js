@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, CardDeck, Button} from 'react-bootstrap';
 
 const Favour = props => (
-    <Card>
+    <Card style = {{display:'block', maxWidth:'30%', flex: 'auto', marginLeft:'1.66%', marginRight:'1.66%', marginTop:'20px', marginBottom: '20px', boxShadow:'0 0 20px rgba(0,0,0,.1)'}}>
     <Card.Img variant="top" src="https://wi-images.condecdn.net/image/doEYpG6Xd87/crop/810/f/weather.jpg" />
     <Card.Body>
     <Card.Title>{props.favourites.city}</Card.Title>
@@ -17,14 +17,14 @@ const Favour = props => (
           .replace('Z','')}</Card.Text>
     </Card.Body>
     <Card.Footer>
-    <small className="text-muted">{props.favourites.tempreture}</small>
+    <small className="text-muted"><b>tempreture:</b> {props.favourites.tempreture}</small>
     </Card.Footer>
-    <Button onClick={() => {props.deleteFavourite(props.favourites._id) }}>Delete this Log</Button>
-</Card>
+    <Button style={{width:'100%'}} onClick={() => {props.deleteFavourite(props.favourites._id) }}>Delete this Log</Button>
+    </Card>
   )
 
 class Favourite extends Component {
-    componentWillMount(){
+    componentDidMount(){
         axios.post('http://localhost:5000/weatherdata/favourite/', {
             username: this.props.username
         })
@@ -51,10 +51,10 @@ class Favourite extends Component {
         const {favourites } = this.props;
         return ( 
             <Fragment>
-            <CardDeck>
+            <CardDeck style = {{margin:'auto'}}>
                 {this.favourList()}
             </CardDeck>
-            <Button style={{display:'block', marginTop:'20px', marginLeft:'auto', marginRight:'auto'}} onClick={this.props.updateWeather.bind(this,favourites)}>Today's weather</Button>
+            <Button style={{display:'block', marginTop:'20px', marginLeft:'auto', marginRight:'auto', marginBottom:'20px'}} onClick={this.props.updateWeather.bind(this,favourites)}>Today's weather</Button>
             </Fragment>
         )
     }
