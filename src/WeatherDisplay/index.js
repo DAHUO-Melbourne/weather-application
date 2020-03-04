@@ -91,16 +91,20 @@ const mapDispatch=(dispatch)=>{
         },
 
         async getWeatherData(city){
-            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=eeafa45a1d53ce4cf30b841805c81737&q=${city}`);
-            const myJson= await response.json();
-            const weather = myJson.weather[0].main;
-            const tempreture = Math.ceil(myJson.main.temp-273.15);
-            const action = {
-                type:'WEATHER_DATA_CHANGE',
-                weather: weather,
-                tempreture:tempreture,
+            try{
+                const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=eeafa45a1d53ce4cf30b841805c81737&q=${city}`);
+                const myJson= await response.json();
+                const weather = myJson.weather[0].main;
+                const tempreture = Math.ceil(myJson.main.temp-273.15);
+                const action = {
+                    type:'WEATHER_DATA_CHANGE',
+                    weather: weather,
+                    tempreture:tempreture,
+                }
+                dispatch(action);
+            } catch(error){
+                alert('Could not find the city in Information Base, please re-input correct city name')
             }
-            dispatch(action);
         },
 
         submitWeatherData(city, weather, tempreture, permission, username){
