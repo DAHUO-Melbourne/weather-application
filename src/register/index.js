@@ -41,7 +41,7 @@ class Register extends Component {
             </SignupLink>
           </LoginLeftWrapper>
           <LoginRightWrapper>
-            <LoginRightTitle>Join EMS Brüel & Kjær Today!</LoginRightTitle>
+            <LoginRightTitle>Join Us Today!</LoginRightTitle>
           </LoginRightWrapper>
         </LoginWrapper>
         </div>
