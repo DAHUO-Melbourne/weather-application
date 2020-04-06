@@ -55,6 +55,7 @@ export const WeatherRightWrapper = styled.div`
     border-radius: 0 10px 10px 0;
     background: url(https://www.viajarsolo.com/thumbnails/gallery_image_full/components/kcfinder/kcfinder-3.12/upload/images/0B8ejrJ3IlSZvQUdyWHgtZjdtVVE.jpg?itok=Y2KZ6rfH) center center/cover no-repeat;
     position: relative;
+    background-image:url('https://www.dituguancha.com/upload/815_2.jpg');
 `;
 
 export const WeatherInputWrapper=styled.div`
