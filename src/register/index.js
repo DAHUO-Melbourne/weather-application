@@ -24,7 +24,7 @@ class Register extends Component {
                 <Form.Label style={{textAlign:'center', display:'block'}}><b>Permission</b></Form.Label>
                 <Form.Control as="select" 
                               style={{width:'80%', 
-                                      margin:'auto',
+                                      margin:'20px auto',
                                       borderRadius: '2rem',
                                       boxShadow:'0 0 2rem rgba(0,0,255,.1)',
                                       border: 'none',color: '#000'}}
