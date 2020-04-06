@@ -5,7 +5,9 @@ let moment = require('moment');
 
 router.route('/').get((req, res) => {
     weatherData.find()
-        .then(payslips => res.json(payslips))
+        .then(payslips => {
+            res.json(payslips)
+        })
         .catch(err => res.status(400).json('Error ' + err));
 });
 
@@ -55,10 +57,46 @@ router.route('/add').post((req, res) => {
         city,
         weather,
     })
+    let element
+    let time = new Date(); 
 
-    newWeatherData.save()
-        .then(() => res.json('weather data added!'))
-        .catch(err => res.status(400).json('Error ' + err));
+    weatherData.find()
+    .then(payslips => {
+        let array = []
+        // eslint-disable-next-line no-unused-vars
+        res.json(payslips)
+        // eslint-disable-next-line array-callback-return
+        payslips.map(item => {
+            if(item.username===username){
+                array.push(item)
+            }
+        })
+        // eslint-disable-next-line array-callback-return
+        array.map(item => {
+            if(item.city===city){
+                element=item
+            }
+        })
+
+        if(element===undefined){
+            newWeatherData.save()
+                .then(() => res.json('weather data added!'))
+                .catch(err => res.status(400).json('Error ' + err));
+        }else{
+            console.log(element)
+            weatherData.findById(element._id)
+            .then(weatherLog=>{
+                weatherLog.tempreture = req.body.tempreture;
+                weatherLog.city = req.body.city;
+                weatherLog.weather = req.body.weather;
+                weatherLog.username = req.body.username;
+                weatherLog.updatedAt = moment(moment(time).valueOf()).format();
+                weatherLog.save()
+                .then(()=>res.json('weather log updated!'))
+                .catch(err=>res.status(400).json('Error'+err));
+            })
+        }
+    })
 });
 
 module.exports = router;
