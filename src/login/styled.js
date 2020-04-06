@@ -86,6 +86,7 @@ export const LoginButton = styled.button`
     box-shadow: 0 0 2rem rgba(0,0,255,.1);
     background: #d3d3d3;
     text-align: center;
+    outline: none;
 `;
 
 export const SignupLink = styled.div`

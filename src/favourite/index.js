@@ -17,7 +17,7 @@ const Favour = props => (
           .replace('Z','')}</Card.Text>
     </Card.Body>
     <Card.Footer>
-    <small className="text-muted"><b>tempreture:</b> {props.favourites.tempreture}</small>
+    <small className="text-muted"><b>tempreture:</b> {props.favourites.tempreture}℃</small>
     </Card.Footer>
     <Button style={{width:'100%'}} onClick={() => {props.deleteFavourite(props.favourites._id) }}>Delete this Log</Button>
     </Card>
