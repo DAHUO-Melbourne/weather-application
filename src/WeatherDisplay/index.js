@@ -21,6 +21,7 @@ import {WeatherTempretureWrapper,
         WeatherMain} from './styled';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import * as moment from 'moment';
 
 //const storage = window.sessionStorage;
 
@@ -46,7 +47,7 @@ class Weather extends Component {
                     <WeatherRightHeadingWrapper>
                         <WeatherRightHeading>CITY OF THE SEARCH</WeatherRightHeading>
                         <Hr></Hr>
-                        <WeatherDate>Sunday, 31th July</WeatherDate>
+                        <WeatherDate>{moment().format('MMMM Do YYYY')}</WeatherDate>
                     </WeatherRightHeadingWrapper>
                     <WeatherRightContentWrapper>
                         <LogoWrapper>
@@ -60,7 +61,7 @@ class Weather extends Component {
                             </svg>
                         </LogoWrapper>
                         <WeatherTempretureWrapper>
-                            <WeatherTempreture>{tempreture}°</WeatherTempreture>
+                            <WeatherTempreture>{tempreture}°C</WeatherTempreture>
                             <WeatherLocation>{city}</WeatherLocation>
                             <WeatherMain>{weather}</WeatherMain>
                         </WeatherTempretureWrapper>
