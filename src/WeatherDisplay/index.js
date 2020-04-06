@@ -92,7 +92,7 @@ const mapDispatch=(dispatch)=>{
 
         async getWeatherData(city){
             try{
-                const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=eeafa45a1d53ce4cf30b841805c81737&q=${city}`);
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?APPID=eeafa45a1d53ce4cf30b841805c81737&q=${city}`);
                 const myJson= await response.json();
                 const weather = myJson.weather[0].main;
                 const tempreture = Math.ceil(myJson.main.temp-273.15);
