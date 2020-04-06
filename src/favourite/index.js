@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, CardDeck, Button} from 'react-bootstrap';
+import moment from 'moment';
 
 const Favour = props => (
     <Card style = {{display:'block', maxWidth:'30%', flex: 'auto', marginLeft:'1.66%', marginRight:'1.66%', marginTop:'20px', marginBottom: '20px', boxShadow:'0 0 20px rgba(0,0,0,.1)'}}>
@@ -11,10 +12,7 @@ const Favour = props => (
     <Card.Title>{props.favourites.city}</Card.Title>
     <Card.Text>{props.favourites.weather}</Card.Text>
     <Card.Text style={{display:'none'}}>{props.favourites._id}</Card.Text>
-    <Card.Text>{props.favourites.updatedAt.replace('-', '/')
-          .replace('-', '/')
-          .replace('T', '/')
-          .replace('Z','')}</Card.Text>
+    <Card.Text>{moment(moment(props.favourites.updatedAt).valueOf()).format('MMMM Do YYYY')}</Card.Text>
     </Card.Body>
     <Card.Footer>
     <small className="text-muted"><b>tempreture:</b> {props.favourites.tempreture}℃</small>

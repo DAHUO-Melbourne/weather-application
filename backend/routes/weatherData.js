@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
 let weatherData = require('../model/weatherData');
+let moment = require('moment');
 
 router.route('/').get((req, res) => {
     weatherData.find()
@@ -19,11 +20,14 @@ router.route('/favourite').post((req, res) => {
 router.route('/updates').post((req, res) => {
     let favour = req.body.favourites;
     let counter = 0;
+    let time = new Date(); 
     favour.forEach(async function(element) {
         const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=eeafa45a1d53ce4cf30b841805c81737&q=${element.city}`);
         const myJson = await response.json();
         element.weather = myJson.weather[0].main;
         element.tempreture = Math.ceil(myJson.main.temp - 273.15);
+        element.updatedAt = moment(moment(time).valueOf()).format();
+        console.log(element.updatedAt);
         counter++;
     });
     setInterval(() => {
