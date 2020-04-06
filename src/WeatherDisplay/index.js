@@ -109,7 +109,7 @@ const mapDispatch=(dispatch)=>{
 
         submitWeatherData(city, weather, tempreture, permission, username){
             if(permission==='Admin'){
-                axios.post('http://localhost:5000/weatherdata/add',{
+                axios.post('https://radiant-thicket-19584.herokuapp.com/weatherdata/add',{
                     city:city,
                     weather:weather,
                     tempreture:tempreture,

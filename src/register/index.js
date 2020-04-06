@@ -81,12 +81,12 @@ const mapDispatch=(dispatch)=>{
           password:sha256(password),
           permission:permission
         }
-        axios.post('http://localhost:5000/userinfo/findusername',{
+        axios.post('https://radiant-thicket-19584.herokuapp.com/userinfo/findusername',{
           username:username,
         })
         .then(res=>{
           if(res.data.length===0){
-            axios.post('http://localhost:5000/userinfo/add',userInfo)
+            axios.post('https://radiant-thicket-19584.herokuapp.com/userinfo/add',userInfo)
             .then(res=>console.log(res.data));
             this.props.history.push('/');
           }

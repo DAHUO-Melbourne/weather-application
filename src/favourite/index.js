@@ -25,7 +25,7 @@ const Favour = props => (
 
 class Favourite extends Component {
     componentDidMount(){
-        axios.post('http://localhost:5000/weatherdata/favourite/', {
+        axios.post('https://radiant-thicket-19584.herokuapp.com/weatherdata/favourite/', {
             username: this.props.username
         })
         .then(response => {
@@ -82,7 +82,7 @@ const mapState=(state)=>({
 
         deleteFavourite(id){
             window.event.preventDefault();
-            axios.delete('http://localhost:5000/weatherdata/'+id)
+            axios.delete('https://radiant-thicket-19584.herokuapp.com/weatherdata/'+id)
             .then(res => console.log(res.data));
             const action={
                 type: 'CHANGE_FAVOURITE_LIST_AFTER_DELETE',
@@ -93,7 +93,7 @@ const mapState=(state)=>({
 
         updateWeather(favourites){
             window.event.preventDefault();
-            axios.post('http://localhost:5000/weatherdata/updates/', {
+            axios.post('https://radiant-thicket-19584.herokuapp.com/weatherdata/updates/', {
                 favourites: this.props.favourites                
             })
             .then(response => {
