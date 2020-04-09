@@ -33,7 +33,7 @@ class Register extends Component {
                   <option>Admin</option>
                 </Form.Control>
               </Form.Group>
-              <LoginButton type='submit'>Register</LoginButton>
+              <LoginButton type='submit' style={{outline:'none'}}>Register</LoginButton>
             </LoginForm>
             <SignupLink>
               <SignupTitle>Already Have an account?</SignupTitle>

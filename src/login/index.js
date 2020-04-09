@@ -19,7 +19,7 @@ class Login extends Component {
             <LoginForm onSubmit={this.props.loginClick.bind(this, username, sha256(password))}>
               <LoginInput placeholder='Email' value={this.props.username} onChange={this.props.changeUsername}/>
               <LoginInput placeholder='Password' value={this.props.password} onChange={this.props.changePassword} type= 'password'/>
-              <LoginButton type="submit">Login</LoginButton>
+              <LoginButton type="submit" style={{outline:'none'}}>Login</LoginButton>
             </LoginForm>
             
             <SignupLink>
