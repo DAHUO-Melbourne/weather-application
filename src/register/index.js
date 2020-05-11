@@ -6,8 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Col } from 'react-bootstrap';
 import axios from 'axios';
 import sha256 from 'sha256';
+import { BoxLoading } from 'react-loadingg';
 
 class Register extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      animationShow: false
+    }
+  }
   render(){
     const {username, password, permission}=this.props;
     return (
@@ -40,6 +47,11 @@ class Register extends Component {
               <SignupClick><Link to={'/'}>LOGIN</Link></SignupClick>
             </SignupLink>
           </LoginLeftWrapper>
+          {this.state.animationShow?
+               <BoxLoading color='#b50000' style={{zIndex: 100, position: 'fixed', left: '50%', top: '50%'}}/>
+               :
+               <div />
+            }
           <LoginRightWrapper>
             <LoginRightTitle>Join Us Today!</LoginRightTitle>
           </LoginRightWrapper>
@@ -79,6 +91,9 @@ const mapDispatch=(dispatch)=>{
 
     submitUserInfo(username, password, permission, event){
       event.preventDefault();
+      this.setState(()=>({
+        animationShow: true
+      }))
       if (/[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password) && password.length>7) {
         const userInfo={
           username:username,
@@ -93,13 +108,25 @@ const mapDispatch=(dispatch)=>{
             axios.post('https://radiant-thicket-19584.herokuapp.com/userinfo/add',userInfo)
             .then(res=>console.log(res.data));
             this.props.history.push('/');
+            this.setState(()=>({
+              animationShow: false
+            }))
+            alert('Successfully registered')
           }
-          else
-            alert('Already registered')
-          })
+          else{
+           this.setState(()=>({
+              animationShow: false
+            }))
+              alert('Already registered')
+          }
+        })
       }
-      else
+      else{
+        this.setState(()=>({
+          animationShow: false
+        }))
         alert('password must contain at least one uppercase letter, one lowercase letter and one figure, the length must be at least 8 digits')
+      }
 
       const action={
         type:'ADD_USER_INFO_LIST',
