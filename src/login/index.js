@@ -84,6 +84,9 @@ const mapDispatch=(dispatch)=>{
         password:password,
       }).then(res=>{
         if(res.data.length===0){
+          this.setState(()=>({
+            animationShow: false
+          }))
             alert('Please change your password')
         }
         else {
