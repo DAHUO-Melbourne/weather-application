@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, CardDeck, Button} from 'react-bootstrap';
 import moment from 'moment';
+import { BoxLoading } from 'react-loadingg';
 
 const Favour = props => (
     <Card style = {{display:'block', maxWidth:'30%', flex: 'auto', marginLeft:'1.66%', marginRight:'1.66%', marginTop:'20px', marginBottom: '20px', boxShadow:'0 0 20px rgba(0,0,0,.1)'}}>
@@ -22,13 +23,25 @@ const Favour = props => (
   )
 
 class Favourite extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+          animationShow: false
+        }
+      }
     componentDidMount(){
         document.title='weather enquiry'
+        this.setState(()=>({
+            animationShow: true
+          }))
         axios.post('https://radiant-thicket-19584.herokuapp.com/weatherdata/favourite/', {
             username: this.props.username
         })
         .then(response => {
             this.props.onChangeFavourites(response.data);
+            this.setState(()=>({
+                animationShow: false
+            }))
         })
     }
 
@@ -53,6 +66,11 @@ class Favourite extends Component {
             <CardDeck style = {{margin:'auto'}}>
                 {this.favourList()}
             </CardDeck>
+            {this.state.animationShow?
+               <BoxLoading color='#b50000' style={{zIndex: 100, position: 'fixed', left: '50%', top: '50%'}}/>
+               :
+               <div />
+            }
             <Button style={{display:'block', marginTop:'20px', marginLeft:'auto', marginRight:'auto', marginBottom:'20px'}} onClick={this.props.updateWeather.bind(this,favourites)}>Today's weather</Button>
             </Fragment>
         )
@@ -92,6 +110,9 @@ const mapState=(state)=>({
 
         updateWeather(favourites){
             window.event.preventDefault();
+            this.setState(()=>({
+                animationShow: true
+            }))
             axios.post('https://radiant-thicket-19584.herokuapp.com/weatherdata/updates/', {
                 favourites: this.props.favourites                
             })
@@ -102,6 +123,9 @@ const mapState=(state)=>({
                     data: response.data
                 }
                 dispatch(action);
+                this.setState(()=>({
+                    animationShow: false
+                }))
             })
         }
         //使用map，声明一个新数组，或者不声明，直接用老得favourite数组来map掉里面每一项的内容
