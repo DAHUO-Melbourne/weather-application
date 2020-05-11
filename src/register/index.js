@@ -47,6 +47,10 @@ class Register extends Component {
         </div>
     );
   }
+
+  componentDidMount(){
+    document.title = 'weather enquiry'
+  }
 }
 
 const mapState=(state)=>({

@@ -23,6 +23,7 @@ const Favour = props => (
 
 class Favourite extends Component {
     componentDidMount(){
+        document.title='weather enquiry'
         axios.post('https://radiant-thicket-19584.herokuapp.com/weatherdata/favourite/', {
             username: this.props.username
         })

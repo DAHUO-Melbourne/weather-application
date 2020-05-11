@@ -71,6 +71,10 @@ class Weather extends Component {
             </WeatherWrapper>
         )
     }
+
+    componentDidMount(){
+        document.title = 'weather enquiry'
+      }
 }
 
 const mapState=(state)=>({

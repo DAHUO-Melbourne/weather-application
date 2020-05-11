@@ -4,9 +4,15 @@ import {Link} from 'react-router-dom'
 import {LoginWrapper, LoginLeftWrapper, LoginRightWrapper, LoginHeader, LoginForm, LoginInput, LoginButton, SignupLink, SignupClick, SignupTitle, LoginRightTitle} from './styled';
 import axios from 'axios';
 import sha256 from 'sha256';
+import { BoxLoading } from 'react-loadingg';
 
 class Login extends Component {
-
+  constructor(props){
+    super(props)
+    this.state={
+      animationShow: false
+    }
+  }
   render(){
     const {username, password}=this.props;
     return (
@@ -27,11 +33,20 @@ class Login extends Component {
               <SignupClick><Link to={'/register'}>SIGN UP</Link></SignupClick>
             </SignupLink>
           </LoginLeftWrapper>
+          {this.state.animationShow?
+           <BoxLoading color='#b50000' style={{zIndex: 100, position: 'fixed', left: '50%', top: '50%'}}/>
+           :
+           <div />
+          }
           <LoginRightWrapper>
             <LoginRightTitle>Welcome Back!</LoginRightTitle>
           </LoginRightWrapper>
         </LoginWrapper>
     );
+  }
+
+  componentDidMount(){
+    document.title = 'weather enquiry'
   }
 }
 
@@ -60,7 +75,10 @@ const mapDispatch=(dispatch)=>{
     },
 
     loginClick(username, password, event){
-      event.preventDefault();
+      event.preventDefault();    
+      this.setState(()=>({
+        animationShow: true
+      }))
       axios.post('https://radiant-thicket-19584.herokuapp.com/userinfo/find',{
         username:username,
         password:password,
@@ -74,6 +92,9 @@ const mapDispatch=(dispatch)=>{
               value: res.data[0].permission
             }
             dispatch(action);
+            this.setState(()=>({
+              animationShow: false
+            }))
             this.props.history.push('/weather');
             return true;
           }
